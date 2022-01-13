@@ -2,5 +2,5 @@
     "eslint.packageManager": "yarn",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "eslint.validate": ["typescript", "json", "javascript"]
+    "eslint.validate": ["typescript","javascript"]
 }
