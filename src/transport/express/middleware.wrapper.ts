@@ -16,7 +16,7 @@ export default function MakeExpressCallback(controller: AppController): ExpressC
             res.status(response.statusCode).send({
                 success: response.success,
                 message: response.message,
-                body: response.data
+                data: response.data
             })
         } catch (error) {
             res.status(500).send({

@@ -8,8 +8,9 @@ class User {
         private fullName: string,
         private age: number,
         private email: string,
-        private hashedPassword: string,
-        private watchedList: string[]
+        private password: string,
+        private watchedList: string[],
+        private passwordManager: PasswordManager
     ) {}
 
     public getId(): string {
@@ -26,10 +27,15 @@ class User {
         return this.email
     }
     public getHashedPassword(): string {
-        return this.hashedPassword
+        return this.passwordManager.hash(this.password)
     }
+
     public getWatchedList(): string[] {
         return this.watchedList
+    }
+
+    public validatePassword(plainTextPassword: string): boolean {
+        return this.passwordManager.validate(plainTextPassword, this.password)
     }
 }
 
@@ -72,7 +78,7 @@ class UserFactory {
             throw new Error('Your password needs to be at least 5 characters long')
         }
 
-        return Object.freeze(new User(id, fullName, age, email, this.passwordManager.hash(password), watchedList))
+        return Object.freeze(new User(id, fullName, age, email, password, watchedList, this.passwordManager))
     }
 }
 

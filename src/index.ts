@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 import MakeExpressCallback from './transport/express/middleware.wrapper'
-import { postUserController } from './controllers'
+import { postUserController, postTokenController } from './controllers'
 
 const app = express()
 let mongoDb: MongoDB
@@ -12,6 +12,7 @@ let mongoDb: MongoDB
 app.use(express.json())
 
 app.post('/user', MakeExpressCallback(postUserController))
+app.post('/token', MakeExpressCallback(postTokenController))
 
 app.get('/', (req: Request, res: Response): void => {
     res.status(200).send({
