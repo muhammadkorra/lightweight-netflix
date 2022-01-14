@@ -1,0 +1,9 @@
+abstract class Repository<T> {
+    abstract insertOne(item: T): Promise<boolean>
+    abstract findById(id: string): Promise<T | null>
+    abstract findAll(): Promise<T[] | []>
+    abstract deleteOne(id: string): Promise<boolean>
+    abstract updateOne(id: string, updated: T): Promise<T | null>
+}
+
+export default Repository
