@@ -1,6 +1,6 @@
 # Lightweight Netflix
 
-Typescript implementation for a Lightweight Netflix API.
+An over-engineered Typescript implementation for a Lightweight Netflix API.
 
 # Clean Architecture
 
