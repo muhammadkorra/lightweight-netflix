@@ -10,7 +10,7 @@
     "ignorePatterns": ["node_modules/**/*"],
     "rules": {
         "prettier/prettier": "warn",
-        "@typescript-eslint/no-explicit-any": "error"
+        "@typescript-eslint/no-explicit-any": "off"
     },
     "env": {
         "node": true

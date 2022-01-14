@@ -8,7 +8,8 @@ class User {
         private fullName: string,
         private age: number,
         private email: string,
-        private hashedPassword: string
+        private hashedPassword: string,
+        private watchedList: string[]
     ) {}
 
     public getId(): string {
@@ -27,6 +28,9 @@ class User {
     public getHashedPassword(): string {
         return this.hashedPassword
     }
+    public getWatchedList(): string[] {
+        return this.watchedList
+    }
 }
 
 class UserFactory {
@@ -41,13 +45,15 @@ class UserFactory {
         fullName,
         age,
         email,
-        password
+        password,
+        watchedList = []
     }: {
         id?: string
         fullName?: string
         age?: number
         email?: string
         password?: string
+        watchedList?: string[]
     }): Readonly<User> {
         // business logic
         if (!this.IDFactory.validate(id)) {
@@ -66,7 +72,7 @@ class UserFactory {
             throw new Error('Your password needs to be at least 5 characters long')
         }
 
-        return Object.freeze(new User(id, fullName, age, email, this.passwordManager.hash(password)))
+        return Object.freeze(new User(id, fullName, age, email, this.passwordManager.hash(password), watchedList))
     }
 }
 
