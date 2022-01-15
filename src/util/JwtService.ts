@@ -16,7 +16,7 @@ class JwtService implements AuthService {
     async validateToken(token: string): Promise<boolean> {
         const password: string = 'defaultPassowrd' || process.env.JWT_SECRET
         try {
-            const validJwt = jwt.verify(token, password, {
+            jwt.verify(token, password, {
                 algorithms: ['HS512'],
                 audience: 'lightweight-netflix',
                 issuer: 'lightweight-netflix'
