@@ -14,10 +14,26 @@ class JwtService implements AuthService {
         })
     }
     async validateToken(token: string): Promise<boolean> {
-        throw new Error('Method not implemented.')
+        const password: string = 'defaultPassowrd' || process.env.JWT_SECRET
+        try {
+            const validJwt = jwt.verify(token, password, {
+                algorithms: ['HS512'],
+                audience: 'lightweight-netflix',
+                issuer: 'lightweight-netflix'
+            })
+
+            return true
+        } catch (error: any) {
+            return false
+        }
     }
-    async parseToken(token: string): Promise<any> {
-        throw new Error('Method not implemented.')
+    async parseToken(token: string): Promise<string> {
+        const validToken = jwt.decode(token, {
+            json: true,
+            complete: true
+        })
+
+        return validToken!.payload!.sub!
     }
 }
 

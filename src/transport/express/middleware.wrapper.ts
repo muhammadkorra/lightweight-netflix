@@ -8,7 +8,10 @@ export default function MakeExpressCallback(controller: AppController): ExpressC
         const httpRequest: HttpRequest = {
             body: req.body,
             query: req.query,
-            params: req.params
+            params: req.params,
+            headers: {
+                authorization: req.headers.authorization
+            }
         }
         try {
             const response = await controller.controller(httpRequest)
