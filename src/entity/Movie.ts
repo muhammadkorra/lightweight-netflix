@@ -10,7 +10,7 @@ export class Movie {
         private owner: string,
         private rating: number,
         private timesRated: number,
-        private reviews: { rating: number; review?: string }[],
+        private reviews: { author: string; rating: number; review?: string }[],
         private createdAt: string,
         private modifiedAt: string
     ) {}
@@ -88,7 +88,7 @@ class MovieFactory {
         owner?: string
         rating?: number
         timesRated?: number
-        reviews?: { rating: number; review?: string }[]
+        reviews?: { author: string; rating: number; review?: string }[]
         createdAt?: string
         modifiedAt?: string
     }): Readonly<Movie> {

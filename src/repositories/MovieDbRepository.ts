@@ -11,7 +11,7 @@ type MovieDbPort = {
     owner: string
     rating: number
     timesRated: number
-    reviews: { rating: number; review?: string }[]
+    reviews: { author: string; rating: number; review?: string }[]
     createdAt: string
     modifiedAt: string
 }
@@ -91,7 +91,7 @@ class MovieDb extends MovieRepository {
     async updatedRating(
         _id: string,
         overallRating: { rating: number; timesRated: number },
-        reviewItem: { rating: number; review?: string | undefined }
+        reviewItem: { author: string; rating: number; review?: string | undefined }
     ): Promise<boolean> {
         const updated = await this.movieCollection.updateOne(
             { _id },
@@ -101,7 +101,7 @@ class MovieDb extends MovieRepository {
                     timesRated: overallRating.timesRated
                 },
                 $push: {
-                    reviews: { rating: reviewItem.rating, review: reviewItem.review }
+                    reviews: { author: reviewItem.author, rating: reviewItem.rating, review: reviewItem.review }
                 }
             }
         )

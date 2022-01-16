@@ -16,6 +16,7 @@ class PostReviewController implements AppController {
             const validUser = await this.createReviewInteractor.getValidUser(accessToken)
             await this.createReviewInteractor.isMovieInWatchlist(validUser, movieId)
             await this.createReviewInteractor.addMovieReview(movieId, {
+                author: validUser,
                 rating,
                 review
             })

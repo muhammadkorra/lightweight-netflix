@@ -28,11 +28,14 @@ class CreateReviewInteractor {
         const found = user.watchedList && user.watchedList.filter((movieItem) => movieItem.id === movieId)[0]
 
         if (!found) {
-            throw new Error('You cannot rate a movie that is not  in your watchlist')
+            throw new Error('You cannot rate a movie that is not in your watchlist')
         }
     }
 
-    public async addMovieReview(movieId: string, review: { rating?: number; review?: string }): Promise<boolean> {
+    public async addMovieReview(
+        movieId: string,
+        review: { author: string; rating?: number; review?: string }
+    ): Promise<boolean> {
         const found = await this.movieRepository.findById(movieId)
         if (!found) {
             throw new Error('Movie was not found')
@@ -40,6 +43,10 @@ class CreateReviewInteractor {
 
         if (!review.rating || !Number.isInteger(review.rating)) {
             throw new Error('The rating you provided is not an integer')
+        }
+
+        if (found.reviews && found.reviews.filter((reviewItem) => reviewItem.author === review.author).length !== 0) {
+            throw new Error('User cannot rate movie twice')
         }
 
         const movie = movieFactory.makeMovie(found)
@@ -52,6 +59,7 @@ class CreateReviewInteractor {
                 timesRated: movie.getTimesRated()
             },
             {
+                author: review.author,
                 rating: review.rating,
                 review: review.review || 'No review was provided by the user'
             }
