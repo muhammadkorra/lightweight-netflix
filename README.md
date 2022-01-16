@@ -68,3 +68,4 @@ There are some enhancements that need to be done
 1. Move the user authorization logic to a middleware function rather than repeating the code in each interactor
 2. Implement a more efficient updated mechanism to update only the fields provided, rather than setting the whole movie
 3. Handle movie duplication logic. Maybe create a hash (movie name + movie year) and check if the hash exists in any of the movies.
+4. Proper logging
