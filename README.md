@@ -6,6 +6,24 @@ An over-engineered Typescript implementation for a Lightweight Netflix API.
 
 https://documenter.getpostman.com/view/8362406/UVXjLc7N#intro
 
+## Run The API
+
+### Prerequisites
+
+1. Docker Engine
+2. Docker Compose
+
+### Steps
+
+1. Navigate to the root directory of the project `lightweight-netflix`
+2. Run the following command
+
+```bash
+docker-compose up --build
+```
+
+3. Wait for the image to build and the API initializes
+
 # Clean Architecture
 
 The project features Bob Martin's clean architecture ideology, by layering all the components that make the API into separate independent
