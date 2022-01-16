@@ -63,6 +63,7 @@ class UpdateMovieInteractor {
             owner: validMovie.getOwner(),
             rating: validMovie.getRating(),
             timesRated: validMovie.getTimesRated(),
+            reviews: validMovie.getReviews(),
             createdAt: validMovie.getCreatedAt(),
             modifiedAt: validMovie.getModifiedAt()
         }

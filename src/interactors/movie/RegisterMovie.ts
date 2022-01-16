@@ -42,6 +42,7 @@ class RegisterMovieInteractor {
             owner: newMovie.getOwner(),
             rating: newMovie.getRating(),
             timesRated: newMovie.getTimesRated(),
+            reviews: newMovie.getReviews(),
             createdAt: newMovie.getCreatedAt(),
             modifiedAt: newMovie.getModifiedAt()
         }

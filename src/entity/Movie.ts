@@ -10,6 +10,7 @@ export class Movie {
         private owner: string,
         private rating: number,
         private timesRated: number,
+        private reviews: { rating: number; review?: string }[],
         private createdAt: string,
         private modifiedAt: string
     ) {}
@@ -46,6 +47,15 @@ export class Movie {
         return this.timesRated
     }
 
+    public getReviews(): { rating: number; review?: string }[] {
+        return this.reviews
+    }
+
+    public updatedRating(magnitude: number): void {
+        this.rating = Number(Number((this.rating * this.timesRated + magnitude) / (this.timesRated + 1)).toFixed(2))
+        this.timesRated += 1
+    }
+
     public getCreatedAt(): string {
         return this.createdAt
     }
@@ -66,6 +76,7 @@ class MovieFactory {
         owner,
         rating = 0,
         timesRated = 0,
+        reviews = [],
         createdAt = new Date().toUTCString(),
         modifiedAt = new Date().toUTCString()
     }: {
@@ -77,6 +88,7 @@ class MovieFactory {
         owner?: string
         rating?: number
         timesRated?: number
+        reviews?: { rating: number; review?: string }[]
         createdAt?: string
         modifiedAt?: string
     }): Readonly<Movie> {
@@ -99,9 +111,7 @@ class MovieFactory {
             throw new Error('Movie needs an owner')
         }
 
-        return Object.freeze(
-            new Movie(id, name, description, year, cover, owner, rating, timesRated, createdAt, modifiedAt)
-        )
+        return new Movie(id, name, description, year, cover, owner, rating, timesRated, reviews, createdAt, modifiedAt)
     }
 }
 

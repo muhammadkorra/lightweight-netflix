@@ -7,6 +7,7 @@ type MovieDto = {
     owner: string
     rating: number
     timesRated: number
+    reviews: { rating: number; review?: string }[]
     createdAt: string
     modifiedAt: string
 }

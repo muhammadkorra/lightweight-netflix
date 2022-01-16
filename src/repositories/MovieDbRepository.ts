@@ -1,5 +1,5 @@
 import type MovieDto from 'MovieDto'
-import Repository from './abstractions/repository.abstract'
+import MovieRepository from './abstractions/movie.repository.abstract'
 import { Db, Collection } from 'mongodb'
 
 type MovieDbPort = {
@@ -11,11 +11,12 @@ type MovieDbPort = {
     owner: string
     rating: number
     timesRated: number
+    reviews: { rating: number; review?: string }[]
     createdAt: string
     modifiedAt: string
 }
 
-class MovieDb extends Repository<MovieDto> {
+class MovieDb extends MovieRepository {
     private movieCollection: Collection<MovieDbPort>
     constructor(mongoDb: Db) {
         super()
@@ -85,6 +86,31 @@ class MovieDb extends Repository<MovieDto> {
         } catch (error: any) {
             throw new Error('Failed to update movie from database')
         }
+    }
+
+    async updatedRating(
+        _id: string,
+        overallRating: { rating: number; timesRated: number },
+        reviewItem: { rating: number; review?: string | undefined }
+    ): Promise<boolean> {
+        const updated = await this.movieCollection.updateOne(
+            { _id },
+            {
+                $set: {
+                    rating: overallRating.rating,
+                    timesRated: overallRating.timesRated
+                },
+                $push: {
+                    reviews: { rating: reviewItem.rating, review: reviewItem.review }
+                }
+            }
+        )
+
+        if (updated.modifiedCount === 1) {
+            return true
+        }
+
+        return false
     }
 }
 

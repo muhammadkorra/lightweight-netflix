@@ -10,7 +10,8 @@ import {
     postMovieController,
     deleteMovieController,
     patchMovieController,
-    postWatchlistController
+    postWatchlistController,
+    postReviewController
 } from './controllers'
 
 const app = express()
@@ -26,7 +27,7 @@ app.delete('/movie(s)?/:movieId', MakeExpressCallback(deleteMovieController))
 app.patch('/movie(s)?/:movieId', MakeExpressCallback(patchMovieController))
 app.get('/movie(s)?/:movieId')
 app.get('/movie(s)?')
-app.post('/movie(s)?/:movieId/review')
+app.post('/movie(s)?/:movieId/review', MakeExpressCallback(postReviewController))
 
 app.get('/', (req: Request, res: Response): void => {
     res.status(200).send({
