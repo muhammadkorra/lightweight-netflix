@@ -1,6 +1,6 @@
 import type MovieDto from 'MovieDto'
 import MovieRepository from './abstractions/movie.repository.abstract'
-import { Db, Collection } from 'mongodb'
+import { Db, Collection, SortDirection } from 'mongodb'
 
 type MovieDbPort = {
     _id: string
@@ -31,9 +31,20 @@ class MovieDb extends MovieRepository {
             throw new Error('Failed to insert movie to database')
         }
     }
-    async findAll(): Promise<MovieDto[] | []> {
+    async findAll(): Promise<any[] | []> {
         try {
-            const movies = await this.movieCollection.find({}).toArray()
+            const movies = await this.movieCollection
+                .find({})
+                .project({
+                    _id: 1,
+                    name: 1,
+                    description: 1,
+                    rating: 1,
+                    timesRated: 1,
+                    year: 1,
+                    owner: 1
+                })
+                .toArray()
             return movies.length > 0
                 ? movies.map(({ _id: id, ...movieParams }) => ({
                       id,
@@ -111,6 +122,29 @@ class MovieDb extends MovieRepository {
         }
 
         return false
+    }
+
+    async findAllSorted(filter: { filter: string; order: number }): Promise<any[] | []> {
+        const sortedMovies = await this.movieCollection
+            .find({})
+            .sort(filter.filter, filter.order as SortDirection)
+            .project({
+                _id: 1,
+                name: 1,
+                description: 1,
+                rating: 1,
+                timesRated: 1,
+                year: 1,
+                owner: 1
+            })
+            .toArray()
+
+        return sortedMovies.length > 0
+            ? sortedMovies.map(({ _id: id, ...movieDetails }) => ({
+                  id,
+                  ...movieDetails
+              }))
+            : []
     }
 }
 

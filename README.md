@@ -2,6 +2,10 @@
 
 An over-engineered Typescript implementation for a Lightweight Netflix API.
 
+## Postman Documentation
+
+https://documenter.getpostman.com/view/8362406/UVXjLc7N#intro
+
 # Clean Architecture
 
 The project features Bob Martin's clean architecture ideology, by layering all the components that make the API into separate independent

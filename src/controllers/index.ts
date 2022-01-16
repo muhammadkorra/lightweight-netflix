@@ -5,7 +5,8 @@ import {
     deleteMovieInteractor,
     updateMovieInteractor,
     userWatchlistInteractor,
-    createReviewInteractor
+    createReviewInteractor,
+    getMoviesInteractor
 } from '../interactors'
 
 import PostUserController from './PostUser'
@@ -15,6 +16,8 @@ import DeleteMovieController from './DeleteMovie'
 import PatchMovieController from './PatchMovie'
 import PostWatchlistController from './PostWatchlist'
 import PostReviewController from './PostReview'
+import GetMoviesController from './GetMovies'
+import GetMovieController from './GetMovie'
 
 const postUserController = new PostUserController(registerUserInteractor)
 const postTokenController = new PostTokenController(loginUserInteractor)
@@ -23,6 +26,8 @@ const deleteMovieController = new DeleteMovieController(deleteMovieInteractor)
 const patchMovieController = new PatchMovieController(updateMovieInteractor)
 const postWatchlistController = new PostWatchlistController(userWatchlistInteractor)
 const postReviewController = new PostReviewController(createReviewInteractor)
+const getMoviesController = new GetMoviesController(getMoviesInteractor)
+const getMovieController = new GetMovieController(getMoviesInteractor)
 
 export {
     postUserController,
@@ -31,5 +36,7 @@ export {
     deleteMovieController,
     patchMovieController,
     postWatchlistController,
-    postReviewController
+    postReviewController,
+    getMoviesController,
+    getMovieController
 }

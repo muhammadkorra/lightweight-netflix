@@ -5,6 +5,7 @@ import DeleteMovieInteractor from './movie/DeleteMovie'
 import UpdateMovieInteractor from './movie/UpdateMovie'
 import UserWatchlistInteractor from './user/UserWatchlist'
 import CreateReviewInteractor from './movie/CreateReview'
+import GetMoviesInteractor from './movie/GetMovies'
 import { userDbRepository, movieDbRepository } from '../repositories'
 import JwtService from '../util/JwtService'
 
@@ -16,6 +17,7 @@ const deleteMovieInteractor = new DeleteMovieInteractor(movieDbRepository, jwtSe
 const updateMovieInteractor = new UpdateMovieInteractor(movieDbRepository, jwtService)
 const userWatchlistInteractor = new UserWatchlistInteractor(userDbRepository, movieDbRepository, jwtService)
 const createReviewInteractor = new CreateReviewInteractor(movieDbRepository, userDbRepository, jwtService)
+const getMoviesInteractor = new GetMoviesInteractor(movieDbRepository)
 
 export {
     registerUserInteractor,
@@ -24,5 +26,6 @@ export {
     deleteMovieInteractor,
     updateMovieInteractor,
     userWatchlistInteractor,
-    createReviewInteractor
+    createReviewInteractor,
+    getMoviesInteractor
 }

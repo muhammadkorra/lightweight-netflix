@@ -11,7 +11,9 @@ import {
     deleteMovieController,
     patchMovieController,
     postWatchlistController,
-    postReviewController
+    postReviewController,
+    getMoviesController,
+    getMovieController
 } from './controllers'
 
 const app = express()
@@ -25,16 +27,9 @@ app.post('/token', MakeExpressCallback(postTokenController))
 app.post('/movie(s)?', MakeExpressCallback(postMovieController))
 app.delete('/movie(s)?/:movieId', MakeExpressCallback(deleteMovieController))
 app.patch('/movie(s)?/:movieId', MakeExpressCallback(patchMovieController))
-app.get('/movie(s)?/:movieId')
-app.get('/movie(s)?')
+app.get('/movie(s)?/:movieId', MakeExpressCallback(getMovieController))
+app.get('/movie(s)?', MakeExpressCallback(getMoviesController))
 app.post('/movie(s)?/:movieId/review', MakeExpressCallback(postReviewController))
-
-app.get('/', (req: Request, res: Response): void => {
-    res.status(200).send({
-        success: true,
-        message: 'Hello World'
-    })
-})
 
 app.listen(4040, async (): Promise<void> => {
     mongoDb = MongoDB.getInstance()
