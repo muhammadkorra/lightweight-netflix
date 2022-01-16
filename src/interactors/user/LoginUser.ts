@@ -1,7 +1,7 @@
 import UserDto from 'UserDto'
-import { userFactory } from '../entity'
-import UserRepository from '../repositories/abstractions/user.repository.abstract'
-import AuthService from '../util/interfaces/auth.interface'
+import { userFactory } from '../../entity'
+import UserRepository from '../../repositories/abstractions/user.repository.abstract'
+import AuthService from '../../util/interfaces/auth.interface'
 
 class LoginUserInteractor {
     constructor(private userRepository: UserRepository, private authService: AuthService) {}
@@ -28,7 +28,8 @@ class LoginUserInteractor {
             email: validUser.getEmail(),
             fullName: validUser.getFullName(),
             age: validUser.getAge(),
-            password: validUser.getHashedPassword()
+            password: validUser.getHashedPassword(),
+            watchedList: validUser.getWatchedList()
         }
     }
 

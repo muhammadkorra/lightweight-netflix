@@ -1,7 +1,7 @@
 import MovieDto from 'MovieDto'
-import { movieFactory } from '../entity'
-import Repository from '../repositories/abstractions/repository.abstract'
-import AuthService from '../util/interfaces/auth.interface'
+import { movieFactory } from '../../entity'
+import Repository from '../../repositories/abstractions/repository.abstract'
+import AuthService from '../../util/interfaces/auth.interface'
 
 class UpdateMovieInteractor {
     constructor(private movieRepository: Repository<MovieDto>, private authService: AuthService) {}

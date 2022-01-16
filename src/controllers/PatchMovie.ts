@@ -1,7 +1,7 @@
 import type HttpRequest from '../transport/abstractions/request'
 import type HttpResponse from '../transport/abstractions/response'
 import AppController from './interfaces/app.controller'
-import UpdateMovieInteractor from '../interactors/UpdateMovie'
+import UpdateMovieInteractor from '../interactors/movie/UpdateMovie'
 
 class PatchMovieController implements AppController {
     constructor(private updateMovieInteractor: UpdateMovieInteractor) {}

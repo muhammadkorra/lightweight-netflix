@@ -4,7 +4,7 @@ type UserDto = {
     age: number
     email: string
     password: string
-    watchedList?: string[]
+    watchedList: { id: string; name: string }[]
 }
 
 export default UserDto

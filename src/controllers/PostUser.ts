@@ -1,7 +1,7 @@
 import type HttpRequest from '../transport/abstractions/request'
 import type HttpResponse from '../transport/abstractions/response'
 import AppController from './interfaces/app.controller'
-import RegisterUserInteractor from '../interactors/RegisterUser'
+import RegisterUserInteractor from '../interactors/user/RegisterUser'
 
 class PostUserController implements AppController {
     constructor(private registerUserInteractor: RegisterUserInteractor) {}

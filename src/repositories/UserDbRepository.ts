@@ -8,6 +8,7 @@ type UserDbPort = {
     age: number
     email: string
     password: string
+    watchedList: { id: string; name: string }[]
 }
 
 class UserDb extends UserRepository {
@@ -79,6 +80,26 @@ class UserDb extends UserRepository {
     }
     async updateOne(updated: UserDto): Promise<boolean> {
         throw new Error('Method not implemented.')
+    }
+
+    async insertToWatchlist(_id: string, watchlistItem: { id: string; name: string }): Promise<boolean> {
+        try {
+            const updated = await this.userCollection.updateOne(
+                { _id },
+                {
+                    $push: {
+                        watchedList: { id: watchlistItem.id, name: watchlistItem.name }
+                    }
+                }
+            )
+
+            if (updated.modifiedCount === 1) {
+                return true
+            }
+            return false
+        } catch (error: any) {
+            throw new Error('Failed to insert watchlist item to database')
+        }
     }
 }
 

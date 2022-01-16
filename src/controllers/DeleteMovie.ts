@@ -1,7 +1,7 @@
 import type HttpRequest from '../transport/abstractions/request'
 import type HttpResponse from '../transport/abstractions/response'
 import AppController from './interfaces/app.controller'
-import DeleteMovieInteractor from '../interactors/DeleteMovie'
+import DeleteMovieInteractor from '../interactors/movie/DeleteMovie'
 
 class DeleteMovieController implements AppController {
     constructor(private deleteMovieInteractor: DeleteMovieInteractor) {}

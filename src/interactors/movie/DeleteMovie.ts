@@ -1,6 +1,6 @@
 import MovieDto from 'MovieDto'
-import Repository from '../repositories/abstractions/repository.abstract'
-import AuthService from '../util/interfaces/auth.interface'
+import Repository from '../../repositories/abstractions/repository.abstract'
+import AuthService from '../../util/interfaces/auth.interface'
 
 class DeleteMovieInteractor {
     constructor(private movieRepository: Repository<MovieDto>, private authService: AuthService) {}

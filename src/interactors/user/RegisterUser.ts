@@ -1,6 +1,6 @@
 import UserDto from 'UserDto'
-import { userFactory } from '../entity'
-import UserRepository from '../repositories/abstractions/user.repository.abstract'
+import { userFactory } from '../../entity'
+import UserRepository from '../../repositories/abstractions/user.repository.abstract'
 
 class RegisterUserInteractor {
     constructor(private userRepository: UserRepository) {}
@@ -29,7 +29,8 @@ class RegisterUserInteractor {
             email: newUser.getEmail(),
             fullName: newUser.getFullName(),
             age: newUser.getAge(),
-            password: newUser.getHashedPassword()
+            password: newUser.getHashedPassword(),
+            watchedList: newUser.getWatchedList()
         }
         const inserted = await this.userRepository.insertOne(userDto)
         if (!inserted) {

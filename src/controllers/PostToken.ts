@@ -1,7 +1,7 @@
 import type HttpRequest from '../transport/abstractions/request'
 import type HttpResponse from '../transport/abstractions/response'
 import AppController from './interfaces/app.controller'
-import LoginUserInteractor from '../interactors/LoginUser'
+import LoginUserInteractor from '../interactors/user/LoginUser'
 
 class PostTokenController implements AppController {
     constructor(private loginUserInteractor: LoginUserInteractor) {}

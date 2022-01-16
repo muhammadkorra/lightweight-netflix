@@ -1,7 +1,7 @@
 import type HttpRequest from '../transport/abstractions/request'
 import type HttpResponse from '../transport/abstractions/response'
 import AppController from './interfaces/app.controller'
-import RegisterMovieInteractor from '../interactors/RegisterMovie'
+import RegisterMovieInteractor from '../interactors/movie/RegisterMovie'
 
 class PostMovieController implements AppController {
     constructor(private registerMovieInteractor: RegisterMovieInteractor) {}

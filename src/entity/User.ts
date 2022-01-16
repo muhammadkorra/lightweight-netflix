@@ -2,6 +2,11 @@ import ID from '../util/interfaces/id.interface'
 import EmailValidator from '../util/interfaces/email.interface'
 import PasswordManager from '../util/interfaces/password.interface'
 
+type WatchlistItem = {
+    id: string
+    name: string
+}
+
 class User {
     constructor(
         private id: string,
@@ -9,7 +14,7 @@ class User {
         private age: number,
         private email: string,
         private password: string,
-        private watchedList: string[],
+        private watchedList: WatchlistItem[],
         private passwordManager: PasswordManager
     ) {}
 
@@ -30,7 +35,7 @@ class User {
         return this.passwordManager.hash(this.password)
     }
 
-    public getWatchedList(): string[] {
+    public getWatchedList(): WatchlistItem[] {
         return this.watchedList
     }
 
@@ -59,7 +64,7 @@ class UserFactory {
         age?: number
         email?: string
         password?: string
-        watchedList?: string[]
+        watchedList?: WatchlistItem[]
     }): Readonly<User> {
         // business logic
         if (!this.IDFactory.validate(id)) {
