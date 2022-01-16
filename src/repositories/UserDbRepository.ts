@@ -77,7 +77,7 @@ class UserDb extends UserRepository {
             throw new Error('Failed to delete user from database')
         }
     }
-    async updateOne(id: string, updated: UserDto): Promise<UserDto> {
+    async updateOne(updated: UserDto): Promise<boolean> {
         throw new Error('Method not implemented.')
     }
 }

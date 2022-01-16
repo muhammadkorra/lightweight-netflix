@@ -67,8 +67,24 @@ class MovieDb extends Repository<MovieDto> {
             throw new Error('Failed to delete movie from database')
         }
     }
-    async updateOne(id: string, updated: MovieDto): Promise<MovieDto> {
-        throw new Error('Method not implemented.')
+    async updateOne(updatedMovie: MovieDto): Promise<boolean> {
+        try {
+            const updated = await this.movieCollection.updateOne(
+                { _id: updatedMovie.id },
+                { $set: { ...updatedMovie } },
+                {
+                    upsert: false
+                }
+            )
+
+            if (updated.modifiedCount === 1) {
+                return true
+            }
+
+            return false
+        } catch (error: any) {
+            throw new Error('Failed to update movie from database')
+        }
     }
 }
 
