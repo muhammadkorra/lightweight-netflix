@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import MongoDB from './database/mongodb'
 import dotenv from 'dotenv'
 

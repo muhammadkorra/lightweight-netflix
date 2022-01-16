@@ -7,7 +7,7 @@ class MongoDB {
     private mongoClient: MongoClient
 
     private constructor() {
-        const mongoConnectionUrl: string = 'mongodb://localhost:27017?authSource=admin' || process.env.MONGODB_URL
+        const mongoConnectionUrl: string = process.env.MONGODB_URL || 'http://localhost:27017?authSource=admin'
         this.mongoClient = new MongoClient(mongoConnectionUrl, {
             auth: {
                 username: process.env.MONGODB_USERNAME,
